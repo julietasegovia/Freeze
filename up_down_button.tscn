@@ -9,7 +9,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="Up_Down_Sprite" type="Sprite2D" parent="Up_Down_Button" unique_id=851099214]
-position = Vector2(0.99999905, -9.536743e-07)
-rotation = -1.573054
-scale = Vector2(0.104231544, 0.10423154)
+position = Vector2(1.0000019, 1.0000019)
+rotation = -0.0006752014
+scale = Vector2(0.06420634, 0.06420633)
 texture = ExtResource("1_mjf3w")
