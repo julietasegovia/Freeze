@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://u28m1swwqk0u"]
+
+[ext_resource type="Texture2D" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
+[ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxfeb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8pjp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nioi2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k7306"]
+
+[node name="Tablet" type="Node2D" unique_id=315542649]
+
+[node name="Tablet Sprite" type="Sprite2D" parent="." unique_id=1263840466]
+position = Vector2(95.99999, 33)
+scale = Vector2(0.75273436, 0.7527344)
+texture = ExtResource("1_wfsd1")
+
+[node name="Up_Down" parent="." unique_id=1679606921 instance=ExtResource("2_pb78e")]
+position = Vector2(275, -198)
+
+[node name="Up_Down_Button" parent="Up_Down" index="0" unique_id=955325245]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_q5a8w")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dxfeb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8pjp7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nioi2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k7306")
+
+[node name="Up_Down_Sprite" parent="Up_Down/Up_Down_Button" index="0" unique_id=851099214]
+position = Vector2(40, 40)
+
+[editable path="Up_Down"]
