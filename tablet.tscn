@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m5380ptb4km4" path="res://Freeze/tablet.gd" id="1_q5a8w"]
 [ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
+[ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Freeze/Sprites/tablet_background.jpg" id="2_dxfeb"]
 [ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
@@ -17,6 +18,11 @@
 [node name="Tablet" type="Node2D" unique_id=315542649]
 script = ExtResource("1_q5a8w")
 
+[node name="Tablet Background" type="Sprite2D" parent="." unique_id=1119491628]
+position = Vector2(-10.008473, 5.9999766)
+scale = Vector2(0.24963994, 0.24963994)
+texture = ExtResource("2_dxfeb")
+
 [node name="Tablet Sprite" type="Sprite2D" parent="." unique_id=1263840466]
 position = Vector2(95.99999, 33)
 scale = Vector2(0.75273436, 0.7527344)
@@ -30,6 +36,7 @@ offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_q5a8w")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_dxfeb")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8pjp7")
