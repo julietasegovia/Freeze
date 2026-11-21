@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cd4bat7mtbbnl"]
+
+[ext_resource type="Texture2D" uid="uid://bt6qlnpwbpl2x" path="res://Freeze/Sprites/up_down.png" id="1_88mev"]
+
+[node name="Node2D" type="Node2D" unique_id=1679606921]
+
+[node name="Up_Down" type="Button" parent="." unique_id=955325245]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Up_Down_Sprite" type="Sprite2D" parent="Up_Down" unique_id=851099214]
+position = Vector2(0.99999994, 1.4551915e-11)
+rotation = -1.573054
+scale = Vector2(0.06347394, 0.06347394)
+texture = ExtResource("1_88mev")

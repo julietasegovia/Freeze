@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ceox8wh1hg3vr"]
+
+[ext_resource type="Texture2D" uid="uid://dgda5cxonbexv" path="res://Freeze/Sprites/tablet.png" id="1_fxe27"]
+
+[node name="Node2D" type="Node2D" unique_id=315542649]
+
+[node name="Tablet" type="Node2D" parent="." unique_id=1834099822]
+
+[node name="Tablet Sprite" type="Sprite2D" parent="Tablet" unique_id=1263840466]
+position = Vector2(6.1035156e-05, -6.1035156e-05)
+scale = Vector2(0.75273436, 0.7527344)
+texture = ExtResource("1_fxe27")
