@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://random_timer.gd" id="1_timer"]
+
+[node name="RandomTimer" type="Timer"]
+one_shot = true
+script = ExtResource("1_timer")
