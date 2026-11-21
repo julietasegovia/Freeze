@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://u28m1swwqk0u"]
 
-[ext_resource type="Texture2D" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
+[ext_resource type="Script" uid="uid://m5380ptb4km4" path="res://Freeze/tablet.gd" id="1_q5a8w"]
+[ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
 [ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
@@ -14,6 +15,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k7306"]
 
 [node name="Tablet" type="Node2D" unique_id=315542649]
+script = ExtResource("1_q5a8w")
 
 [node name="Tablet Sprite" type="Sprite2D" parent="." unique_id=1263840466]
 position = Vector2(95.99999, 33)
@@ -36,5 +38,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k7306")
 
 [node name="Up_Down_Sprite" parent="Up_Down/Up_Down_Button" index="0" unique_id=851099214]
 position = Vector2(40, 40)
+
+[connection signal="pressed" from="Up_Down/Up_Down_Button" to="." method="_on_up_down_pressed"]
 
 [editable path="Up_Down"]

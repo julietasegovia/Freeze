@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://7werun5apgnn"]
+
+[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
+
+[node name="Main" type="Node2D" unique_id=1716710005]
+
+[node name="Tablet" parent="." unique_id=315542649 instance=ExtResource("1_lspov")]
+position = Vector2(556, 801)
+up_position = Vector2(556, 320)
+down_position = Vector2(556, 800)
