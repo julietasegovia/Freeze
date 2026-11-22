@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
 		visible = not tablet.is_up
 
 func update_display(seconds_left: int) -> void:
+	if text == "You lose":
+		return
 	text = "00:%02d" % seconds_left
 
 func _on_timer_finished() -> void:

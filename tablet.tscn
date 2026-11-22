@@ -51,11 +51,20 @@ script/source = "extends Node2D
 	$\"Equation/Answer3\",
 ]
 @onready var fireplace = $Fireplace
+@onready var order: Node2D = $Order
 
+var number_buttons: Array[Button] = []
 var correct_answer: int
+var next_number := 1
 var finished := false
 
 func _ready() -> void:
+	for child in order.get_children():
+		var button := child as Button
+		button.focus_mode = Control.FOCUS_NONE
+		button.pressed.connect(_on_number_pressed.bind(button))
+		number_buttons.append(button)
+	order.hide()
 	fireplace.hide()
 	equation_label.show()
 	fireplace.connect(\"solved\", _on_fireplace_solved)
@@ -69,14 +78,12 @@ func new_equation() -> void:
 	var c := randi_range(1, 20)
 	correct_answer = a + b - c
 	equation_label.text = \"%d + %d - %d =\" % [a, b, c]
-
 	var choices: Array[int] = [correct_answer]
 	while choices.size() < 3:
 		var decoy := randi_range(2, 18)
 		if decoy != correct_answer and decoy not in choices:
 			choices.append(decoy)
 	choices.shuffle()
-
 	for i in buttons.size():
 		buttons[i].text = str(choices[i])
 		buttons[i].disabled = false
@@ -85,20 +92,51 @@ func _on_answer_pressed(button: Button) -> void:
 	if finished:
 		return
 	if int(button.text) == correct_answer:
-		_show_fireplace()
+		_show_order()
 	else:
 		new_equation()
+
+func _show_order() -> void:
+	finished = true
+	equation_label.hide()
+	fireplace.hide()
+	_shuffle_numbers()
+	order.show()
+
+func _shuffle_numbers() -> void:
+	next_number = 1
+	var numbers: Array[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	numbers.shuffle()
+	for i in number_buttons.size():
+		number_buttons[i].text = str(numbers[i])
+		number_buttons[i].disabled = false
+
+func _reset_progress() -> void:
+	next_number = 1
+	for button in number_buttons:
+		button.disabled = false
+
+func _on_number_pressed(button: Button) -> void:
+	if int(button.text) != next_number:
+		_reset_progress()
+		return
+	button.disabled = true
+	next_number += 1
+	if next_number > 10:
+		_show_fireplace()
 
 func _on_fireplace_solved() -> void:
 	_show_math()
 
 func _show_fireplace() -> void:
 	finished = true
+	order.hide()
 	equation_label.hide()
 	fireplace.reset_puzzle()
 	fireplace.show()
 
 func _show_math() -> void:
+	order.hide()
 	fireplace.hide()
 	equation_label.show()
 	finished = false
@@ -145,6 +183,7 @@ scale = Vector2(0.086128525, 0.12783921)
 texture = ExtResource("6_k7306")
 
 [node name="Fireplace" type="Node2D" parent="Puzzle" unique_id=308805841]
+visible = false
 script = ExtResource("7_2015u")
 
 [node name="Sticks" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=660233756]
@@ -173,7 +212,100 @@ offset_bottom = 150.0
 text = "CLICK AND HOLD
 "
 
+[node name="Order" type="Node2D" parent="Puzzle" unique_id=1317789156]
+
+[node name="Number1" type="Button" parent="Puzzle/Order" unique_id=363536745]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -322.0
+offset_top = -92.0
+offset_right = -252.0
+offset_bottom = -12.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number6" type="Button" parent="Puzzle/Order" unique_id=791253299]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -322.0
+offset_top = 21.0
+offset_right = -252.0
+offset_bottom = 101.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number2" type="Button" parent="Puzzle/Order" unique_id=941543577]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -207.0
+offset_top = -92.0
+offset_right = -137.0
+offset_bottom = -12.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number7" type="Button" parent="Puzzle/Order" unique_id=142269246]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -207.0
+offset_top = 23.0
+offset_right = -137.0
+offset_bottom = 103.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number3" type="Button" parent="Puzzle/Order" unique_id=655356285]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -100.0
+offset_top = -92.0
+offset_right = -30.0
+offset_bottom = -12.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number8" type="Button" parent="Puzzle/Order" unique_id=981650396]
+custom_minimum_size = Vector2(70, 80)
+offset_left = -100.0
+offset_top = 23.0
+offset_right = -30.0
+offset_bottom = 103.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number4" type="Button" parent="Puzzle/Order" unique_id=914764212]
+custom_minimum_size = Vector2(70, 80)
+offset_left = 1.0
+offset_top = -92.0
+offset_right = 71.0
+offset_bottom = -12.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number9" type="Button" parent="Puzzle/Order" unique_id=1275434362]
+custom_minimum_size = Vector2(70, 80)
+offset_left = 1.0
+offset_top = 24.0
+offset_right = 71.0
+offset_bottom = 104.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number5" type="Button" parent="Puzzle/Order" unique_id=50733118]
+custom_minimum_size = Vector2(70, 80)
+offset_left = 109.0
+offset_top = -92.0
+offset_right = 179.0
+offset_bottom = -12.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Number10" type="Button" parent="Puzzle/Order" unique_id=1992859918]
+custom_minimum_size = Vector2(70, 80)
+offset_left = 109.0
+offset_top = 25.0
+offset_right = 179.0
+offset_bottom = 105.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+
 [node name="Equation" type="Label" parent="Puzzle" unique_id=1481027411]
+visible = false
 custom_minimum_size = Vector2(400, 60)
 offset_left = -290.0
 offset_top = -183.0
