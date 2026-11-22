@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://be03qooe4l4u8" path="res://Freeze/puzzle.gd" id="5_nioi2"]
 [ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Freeze/Sprites/puzzle_frame.png" id="5_opqta"]
 [ext_resource type="Texture2D" uid="uid://c2rck21hoc3td" path="res://Freeze/Sprites/math_background.jpg" id="6_k7306"]
+[ext_resource type="Texture2D" uid="uid://b8gqvpidquxsu" path="res://Freeze/Sprites/campfire.png" id="7_jr574"]
+[ext_resource type="Texture2D" uid="uid://dj0504g50jh6n" path="res://Freeze/Sprites/fire.png" id="8_2015u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
 
@@ -56,6 +58,24 @@ script = ExtResource("5_nioi2")
 position = Vector2(-72.44983, -0.87500024)
 scale = Vector2(0.086128525, 0.12783921)
 texture = ExtResource("6_k7306")
+
+[node name="Fireplace" type="Node2D" parent="Puzzle" unique_id=308805841]
+
+[node name="Sticks" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=660233756]
+position = Vector2(-60.999996, 31.999998)
+scale = Vector2(0.07946654, 0.07946654)
+texture = ExtResource("7_jr574")
+
+[node name="Fire" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=1272989471]
+position = Vector2(-84.00001, -27)
+rotation = -0.12367229
+scale = Vector2(0.050269544, 0.050269544)
+texture = ExtResource("8_2015u")
+
+[node name="HeatBar" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=916911549]
+position = Vector2(125, -51.000004)
+scale = Vector2(0.012916664, 0.29564807)
+texture = ExtResource("5_opqta")
 
 [node name="Equation" type="Label" parent="Puzzle" unique_id=1481027411]
 custom_minimum_size = Vector2(400, 60)
