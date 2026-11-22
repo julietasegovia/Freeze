@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 	if get_global_mouse_position().distance_to(frozen_mouse) <= MOVE_LIMIT:
 		return
 	lost = true
+	timer.call("cancel_restart")
 	display.text = "You lose"
 	display.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
