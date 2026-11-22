@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Freeze/Script/menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" path="res://Freeze/menusprites/menueyes.png" id="2_eyes"]
@@ -26,6 +26,18 @@ shader = SubResource("Shader_crt")
 shader_parameter/static_intensity = 0.14
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.03, 0.045, 0.07, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.75, 0.92, 0.8)
+content_margin_left = 24.0
+content_margin_top = 20.0
+content_margin_right = 24.0
+content_margin_bottom = 20.0
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -75,9 +87,9 @@ layout_mode = 1
 anchors_preset = 0
 offset_left = 45.0
 offset_top = 265.0
-offset_right = 470.0
-offset_bottom = 480.0
-theme_override_constants/separation = 28
+offset_right = 520.0
+offset_bottom = 530.0
+theme_override_constants/separation = 24
 
 [node name="TitleLabel" type="Label" parent="MenuLayout"]
 layout_mode = 2
@@ -91,13 +103,133 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.85, 0.92, 0.98, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 42
 theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
 text = "START"
 alignment = 0
+
+[node name="LeaderboardButton" type="Button" parent="MenuLayout"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
+text = "LEADERBOARD"
+alignment = 0
+
+[node name="NamePromptPanel" type="PanelContainer" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -130.0
+offset_right = 240.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="NamePromptPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PromptTitle" type="Label" parent="NamePromptPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "ENTER 3-LETTER NAME"
+horizontal_alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="NamePromptPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+placeholder_text = "AAA"
+alignment = 1
+max_length = 3
+
+[node name="ErrorLabel" type="Label" parent="NamePromptPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="NamePromptPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="NamePromptPanel/VBox/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CONFIRM"
+
+[node name="CancelButton" type="Button" parent="NamePromptPanel/VBox/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CANCEL"
+
+[node name="LeaderboardPanel" type="PanelContainer" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -200.0
+offset_right = 280.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="LeaderboardPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="Label" parent="LeaderboardPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "ONWATCH LEADERBOARD"
+horizontal_alignment = 1
+
+[node name="YourRankLabel" type="Label" parent="LeaderboardPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.92, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "YOUR PLACE: UNRANKED"
+horizontal_alignment = 1
+
+[node name="EntriesText" type="RichTextLabel" parent="LeaderboardPanel/VBox"]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "No scores recorded yet."
+
+[node name="CloseLeaderboardButton" type="Button" parent="LeaderboardPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "<< BACK"
 
 [node name="StaticOverlay" type="ColorRect" parent="."]
 layout_mode = 1

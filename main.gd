@@ -4,6 +4,7 @@ extends Node2D
 @onready var display: Label = $TimerDisplay
 @onready var lose_label: Label = $LoseLabel
 @onready var retry_button: Button = $RetryButton
+@onready var menu_button: Button = $MenuButton
 @onready var tablet = $Tablet
 @onready var monster_asleep: Sprite2D = $MonsterAsleep
 @onready var monster_awake: Sprite2D = $MonsterAwake
@@ -46,6 +47,11 @@ func _process(_delta: float) -> void:
 	call_deferred("_on_player_lost")
 
 func _on_player_lost() -> void:
+	var final_points: int = 0
+	if tablet != null and tablet.has_node("Puzzle") and "points" in tablet.get_node("Puzzle"):
+		final_points = int(tablet.get_node("Puzzle").points)
+	if has_node("/root/LeaderboardManager"):
+		get_node("/root/LeaderboardManager").submit_score(final_points)
 	timer.call("cancel_restart")
 	display.call("hide_for_loss")
 	display.text = ""
@@ -53,8 +59,12 @@ func _on_player_lost() -> void:
 	display.set_process(false)
 	lose_label.visible = true
 	retry_button.visible = true
+	menu_button.visible = true
 	_show_awake()
 	tablet.call("slide_down")
 
 func _on_retry_pressed() -> void:
 	get_tree().reload_current_scene()
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Freeze/menu.tscn")

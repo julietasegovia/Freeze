@@ -76,9 +76,9 @@ vertical_alignment = 1
 [node name="RetryButton" type="Button" parent="." unique_id=158944252]
 visible = false
 z_index = 10
-offset_left = 480.0
+offset_left = 360.0
 offset_top = 400.0
-offset_right = 746.0
+offset_right = 580.0
 offset_bottom = 470.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.99995536, 0.49201554, 0.4455427, 1)
@@ -101,3 +101,20 @@ flip_h = true
 script = ExtResource("3_rww0o")
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_pressed"]
+
+[node name="MenuButton" type="Button" parent="." unique_id=158944253]
+visible = false
+z_index = 10
+offset_left = 565.0
+offset_top = 400.0
+offset_right = 765.0
+offset_bottom = 470.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85, 0.92, 0.98, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_utrw8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qt1qd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h6wrc")
+text = "Menu"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]
