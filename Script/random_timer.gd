@@ -61,8 +61,13 @@ func _on_timer_timeout() -> void:
 func cancel_restart() -> void:
 	restart_pending = false
 	stop()
-	tick_player.stop()
-	alarm_player.stop()
+	_quiet(tick_player)
+	_quiet(alarm_player)
+
+func _quiet(player: AudioStreamPlayer) -> void:
+	if player == null:
+		return
+	player.volume_db = -80.0
 
 func get_time_left_formatted() -> String:
 	return str(int(ceil(time_left)))

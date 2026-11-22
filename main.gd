@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var timer: Timer = $RandomTimer
 @onready var display: Label = $TimerDisplay
+@onready var tablet = $Tablet
 @onready var monster_asleep: Sprite2D = $MonsterAsleep
 @onready var monster_awake: Sprite2D = $MonsterAwake
 
@@ -40,8 +41,11 @@ func _process(_delta: float) -> void:
 	if get_global_mouse_position().distance_to(frozen_mouse) <= MOVE_LIMIT:
 		return
 	lost = true
+	call_deferred("_on_player_lost")
+
+func _on_player_lost() -> void:
 	timer.call("cancel_restart")
 	display.text = "You lose"
 	display.visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().paused = true
+	_show_awake()
+	tablet.call("slide_down")

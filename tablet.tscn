@@ -18,14 +18,25 @@ script/source = "extends Node2D
 @export var slide_time: float = 0.35
 
 var is_up := false
+var locked := false
 var slide: Tween
 
 func _on_up_down_pressed() -> void:
+	if locked:
+		return
 	is_up = not is_up
-	var target := up_position if is_up else down_position
-	if slide:
+	_slide_to(up_position if is_up else down_position)
+
+func slide_down() -> void:
+	locked = true
+	is_up = false
+	_slide_to(down_position)
+
+func _slide_to(target: Vector2) -> void:
+	if is_instance_valid(slide) and slide.is_valid():
 		slide.kill()
 	slide = create_tween()
+	slide.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	slide.set_trans(Tween.TRANS_CUBIC)
 	slide.set_ease(Tween.EASE_OUT)
 	slide.tween_property(self, \"position\", target, slide_time)
