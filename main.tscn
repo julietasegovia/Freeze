@@ -58,16 +58,6 @@ position = Vector2(556, 801)
 up_position = Vector2(556, 320)
 down_position = Vector2(556, 800)
 
-[node name="Left_Hand" type="Sprite2D" parent="." unique_id=1746918484]
-position = Vector2(336.42328, 842.6627)
-rotation = 0.5508427
-scale = Vector2(1.9732616, 1.9732617)
-texture = ExtResource("2_jd3mu")
-centered = false
-offset = Vector2(-115, -20)
-flip_h = true
-script = ExtResource("3_rww0o")
-
 [node name="LoseLabel" type="Label" parent="." unique_id=1564659096]
 visible = false
 z_index = 10
@@ -98,5 +88,16 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_qt1qd")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_h6wrc")
 text = "Retry"
 script = ExtResource("10_retry")
+
+[node name="Left_Hand" type="Sprite2D" parent="." unique_id=1746918484]
+z_index = 10
+position = Vector2(336.42328, 842.6627)
+rotation = 0.5508427
+scale = Vector2(1.9732616, 1.9732617)
+texture = ExtResource("2_jd3mu")
+centered = false
+offset = Vector2(-115, -20)
+flip_h = true
+script = ExtResource("3_rww0o")
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_pressed"]
