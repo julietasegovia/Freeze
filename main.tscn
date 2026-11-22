@@ -1,8 +1,10 @@
-[gd_scene format=3 uid="uid://7werun5apgnn"]
+[gd_scene load_steps=6 format=3 uid="uid://7werun5apgnn"]
 
-[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
-[ext_resource type="Texture2D" uid="uid://sbae3ua66o8e" path="res://Freeze/Sprites/left_hand.png" id="2_jd3mu"]
-[ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://Freeze/left_hand.gd" id="3_rww0o"]
+[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://tablet.tscn" id="1_lspov"]
+[ext_resource type="Texture2D" uid="uid://sbae3ua6608e" path="res://Sprites/left_hand.png" id="2_jd3mu"]
+[ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://left_hand.gd" id="3_rww0o"]
+[ext_resource type="PackedScene" path="res://Script/random_timer.tscn" id="4_timer"]
+[ext_resource type="PackedScene" path="res://Script/timer_display.tscn" id="5_display"]
 
 [node name="Main" type="Node2D" unique_id=1716710005]
 
@@ -20,3 +22,9 @@ centered = false
 offset = Vector2(-120, 0)
 flip_h = true
 script = ExtResource("3_rww0o")
+
+[node name="RandomTimer" parent="." instance=ExtResource("4_timer")]
+
+[node name="TimerDisplay" parent="." node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
+timer = NodePath("../RandomTimer")
+tablet = NodePath("../Tablet")
