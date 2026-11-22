@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://u28m1swwqk0u"]
 
-[ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
-[ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Freeze/Sprites/tablet_background.jpg" id="2_dxfeb"]
-[ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
-[ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Freeze/Sprites/puzzle_frame.png" id="5_opqta"]
-[ext_resource type="Texture2D" uid="uid://c2rck21hoc3td" path="res://Freeze/Sprites/math_background.jpg" id="6_k7306"]
-[ext_resource type="Script" uid="uid://4f2tavkopbjf" path="res://Freeze/fireplace.gd" id="7_2015u"]
-[ext_resource type="Texture2D" uid="uid://b8gqvpidquxsu" path="res://Freeze/Sprites/campfire.png" id="7_jr574"]
-[ext_resource type="Texture2D" uid="uid://dj0504g50jh6n" path="res://Freeze/Sprites/fire.png" id="8_2015u"]
-[ext_resource type="Texture2D" uid="uid://cvs4wgrfqn14i" path="res://Freeze/Sprites/bar_sprite.png" id="8_jr574"]
+[ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Sprites/tablet.png" id="1_wfsd1"]
+[ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Sprites/tablet_background.jpg" id="2_dxfeb"]
+[ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://up_down_button.tscn" id="2_pb78e"]
+[ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Sprites/puzzle_frame.png" id="5_opqta"]
+[ext_resource type="Texture2D" uid="uid://c2rck21hoc3td" path="res://Sprites/math_background.jpg" id="6_k7306"]
+[ext_resource type="Script" uid="uid://4f2tavkopbjf" path="res://fireplace.gd" id="7_2015u"]
+[ext_resource type="Texture2D" uid="uid://b8gqvpidquxsu" path="res://Sprites/campfire.png" id="7_jr574"]
+[ext_resource type="Texture2D" uid="uid://dj0504g50jh6n" path="res://Sprites/fire.png" id="8_2015u"]
+[ext_resource type="Texture2D" uid="uid://cvs4wgrfqn14i" path="res://Sprites/bar_sprite.png" id="8_jr574"]
+
+[ext_resource type="PackedScene" path="res://Wscript/wordsearch_minigame.tscn" id="9_ws"]
 
 [sub_resource type="GDScript" id="GDScript_jr574"]
 script/source = "extends Node2D
@@ -51,7 +53,7 @@ script/source = "extends Node2D
 	$\"Equation/Answer3\",
 ]
 @onready var fireplace = $Fireplace
-@onready var order: Node2D = $Order
+@onready var wordsearch = $WordsearchMinigame
 
 var number_buttons: Array[Button] = []
 var correct_answer: int
@@ -66,8 +68,10 @@ func _ready() -> void:
 		number_buttons.append(button)
 	order.hide()
 	fireplace.hide()
+	wordsearch.hide()
 	equation_label.show()
 	fireplace.connect(\"solved\", _on_fireplace_solved)
+	wordsearch.connect(\"word_found\", _on_wordsearch_solved)
 	for button in buttons:
 		button.pressed.connect(_on_answer_pressed.bind(button))
 	new_equation()
@@ -126,18 +130,31 @@ func _on_number_pressed(button: Button) -> void:
 		_show_fireplace()
 
 func _on_fireplace_solved() -> void:
+	_show_wordsearch()
+
+func _on_wordsearch_solved(_word: String) -> void:
+	await get_tree().create_timer(0.8).timeout
 	_show_math()
 
 func _show_fireplace() -> void:
 	finished = true
 	order.hide()
 	equation_label.hide()
+	wordsearch.hide()
 	fireplace.reset_puzzle()
 	fireplace.show()
+
+func _show_wordsearch() -> void:
+	finished = true
+	equation_label.hide()
+	fireplace.hide()
+	wordsearch.start_new_puzzle()
+	wordsearch.show()
 
 func _show_math() -> void:
 	order.hide()
 	fireplace.hide()
+	wordsearch.hide()
 	equation_label.show()
 	finished = false
 	new_equation()
@@ -350,3 +367,9 @@ texture = ExtResource("5_opqta")
 [connection signal="pressed" from="Up_Down/Up_Down_Button" to="." method="_on_up_down_pressed"]
 
 [editable path="Up_Down"]
+
+[node name="WordsearchMinigame" parent="Puzzle" instance=ExtResource("9_ws")]
+offset_left = -302.0
+offset_top = -200.0
+offset_right = 158.0
+offset_bottom = 200.0
