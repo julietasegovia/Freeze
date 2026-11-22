@@ -1,14 +1,35 @@
 [gd_scene format=3 uid="uid://u28m1swwqk0u"]
 
-[ext_resource type="Script" uid="uid://m5380ptb4km4" path="res://Freeze/tablet.gd" id="1_q5a8w"]
 [ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
 [ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Freeze/Sprites/tablet_background.jpg" id="2_dxfeb"]
 [ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
-[ext_resource type="Script" uid="uid://be03qooe4l4u8" path="res://Freeze/puzzle.gd" id="5_nioi2"]
 [ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Freeze/Sprites/puzzle_frame.png" id="5_opqta"]
 [ext_resource type="Texture2D" uid="uid://c2rck21hoc3td" path="res://Freeze/Sprites/math_background.jpg" id="6_k7306"]
+[ext_resource type="Script" uid="uid://4f2tavkopbjf" path="res://Freeze/fireplace.gd" id="7_2015u"]
 [ext_resource type="Texture2D" uid="uid://b8gqvpidquxsu" path="res://Freeze/Sprites/campfire.png" id="7_jr574"]
 [ext_resource type="Texture2D" uid="uid://dj0504g50jh6n" path="res://Freeze/Sprites/fire.png" id="8_2015u"]
+[ext_resource type="Texture2D" uid="uid://cvs4wgrfqn14i" path="res://Freeze/Sprites/bar_sprite.png" id="8_jr574"]
+
+[sub_resource type="GDScript" id="GDScript_jr574"]
+script/source = "extends Node2D
+
+@export var up_position: Vector2 = Vector2(0, -200)
+@export var down_position: Vector2 = Vector2(0, 200)
+@export var slide_time: float = 0.35
+
+var is_up := false
+var slide: Tween
+
+func _on_up_down_pressed() -> void:
+	is_up = not is_up
+	var target := up_position if is_up else down_position
+	if slide:
+		slide.kill()
+	slide = create_tween()
+	slide.set_trans(Tween.TRANS_CUBIC)
+	slide.set_ease(Tween.EASE_OUT)
+	slide.tween_property(self, \"position\", target, slide_time)
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
 
@@ -20,8 +41,72 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k7306"]
 
+[sub_resource type="GDScript" id="GDScript_2015u"]
+script/source = "extends Node2D
+
+@onready var equation_label: Label = $Equation
+@onready var buttons: Array[Button] = [
+	$\"Equation/Answer1\",
+	$\"Equation/Answer2\",
+	$\"Equation/Answer3\",
+]
+@onready var fireplace = $Fireplace
+
+var correct_answer: int
+var finished := false
+
+func _ready() -> void:
+	fireplace.hide()
+	equation_label.show()
+	fireplace.connect(\"solved\", _on_fireplace_solved)
+	for button in buttons:
+		button.pressed.connect(_on_answer_pressed.bind(button))
+	new_equation()
+
+func new_equation() -> void:
+	var a := randi_range(1, 20)
+	var b := randi_range(1, 20)
+	var c := randi_range(1, 20)
+	correct_answer = a + b - c
+	equation_label.text = \"%d + %d - %d =\" % [a, b, c]
+
+	var choices: Array[int] = [correct_answer]
+	while choices.size() < 3:
+		var decoy := randi_range(2, 18)
+		if decoy != correct_answer and decoy not in choices:
+			choices.append(decoy)
+	choices.shuffle()
+
+	for i in buttons.size():
+		buttons[i].text = str(choices[i])
+		buttons[i].disabled = false
+
+func _on_answer_pressed(button: Button) -> void:
+	if finished:
+		return
+	if int(button.text) == correct_answer:
+		_show_fireplace()
+	else:
+		new_equation()
+
+func _on_fireplace_solved() -> void:
+	_show_math()
+
+func _show_fireplace() -> void:
+	finished = true
+	equation_label.hide()
+	fireplace.reset_puzzle()
+	fireplace.show()
+
+func _show_math() -> void:
+	fireplace.hide()
+	equation_label.show()
+	finished = false
+	new_equation()
+"
+
 [node name="Tablet" type="Node2D" unique_id=315542649]
-script = ExtResource("1_q5a8w")
+script = SubResource("GDScript_jr574")
 
 [node name="Tablet Background" type="Sprite2D" parent="." unique_id=1119491628]
 position = Vector2(-10.008473, 5.9999766)
@@ -52,7 +137,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k7306")
 position = Vector2(40, 40)
 
 [node name="Puzzle" type="Node2D" parent="." unique_id=486865470]
-script = ExtResource("5_nioi2")
+script = SubResource("GDScript_2015u")
 
 [node name="PuzzleBackground" type="Sprite2D" parent="Puzzle" unique_id=1450641573]
 position = Vector2(-72.44983, -0.87500024)
@@ -60,6 +145,7 @@ scale = Vector2(0.086128525, 0.12783921)
 texture = ExtResource("6_k7306")
 
 [node name="Fireplace" type="Node2D" parent="Puzzle" unique_id=308805841]
+script = ExtResource("7_2015u")
 
 [node name="Sticks" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=660233756]
 position = Vector2(-60.999996, 31.999998)
@@ -73,9 +159,19 @@ scale = Vector2(0.050269544, 0.050269544)
 texture = ExtResource("8_2015u")
 
 [node name="HeatBar" type="Sprite2D" parent="Puzzle/Fireplace" unique_id=916911549]
-position = Vector2(125, -51.000004)
-scale = Vector2(0.012916664, 0.29564807)
-texture = ExtResource("5_opqta")
+position = Vector2(130, -58)
+scale = Vector2(0.012916664, 0.13999999)
+texture = ExtResource("8_jr574")
+
+[node name="HoldButton" type="Button" parent="Puzzle/Fireplace" unique_id=681320488]
+custom_minimum_size = Vector2(400, 50)
+custom_maximum_size = Vector2(-1, 200)
+offset_left = -262.0
+offset_top = 100.0
+offset_right = 138.0
+offset_bottom = 150.0
+text = "CLICK AND HOLD
+"
 
 [node name="Equation" type="Label" parent="Puzzle" unique_id=1481027411]
 custom_minimum_size = Vector2(400, 60)

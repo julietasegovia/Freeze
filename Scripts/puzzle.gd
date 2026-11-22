@@ -6,11 +6,15 @@ extends Node2D
 	$"Equation/Answer2",
 	$"Equation/Answer3",
 ]
+@onready var fireplace = $Fireplace
 
 var correct_answer: int
 var finished := false
 
 func _ready() -> void:
+	fireplace.hide()
+	equation_label.show()
+	fireplace.connect("solved", _on_fireplace_solved)
 	for button in buttons:
 		button.pressed.connect(_on_answer_pressed.bind(button))
 	new_equation()
@@ -37,9 +41,21 @@ func _on_answer_pressed(button: Button) -> void:
 	if finished:
 		return
 	if int(button.text) == correct_answer:
-		finished = true
-		equation_label.text = "Right!"
-		for answer_button in buttons:
-			answer_button.disabled = true
+		_show_fireplace()
 	else:
 		new_equation()
+
+func _on_fireplace_solved() -> void:
+	_show_math()
+
+func _show_fireplace() -> void:
+	finished = true
+	equation_label.hide()
+	fireplace.reset_puzzle()
+	fireplace.show()
+
+func _show_math() -> void:
+	fireplace.hide()
+	equation_label.show()
+	finished = false
+	new_equation()
