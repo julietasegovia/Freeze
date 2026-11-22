@@ -13,7 +13,7 @@ Can you do it? Can you save your town?
 
 **Live Demo**: https://who-li.itch.io/onwatch
 
-**Made by**: Juli (@julietasegovia) and Armita (@ashokamrita07-sys)
+**Made by**: Juli (@julietasegovia) and Amrita (@ashokamrita07-sys)
 
 ## How it works
 ### Timer & Gameflow
@@ -26,10 +26,14 @@ The monster is represented by a background image. That's just a sprite that pops
 ### Puzzles
 #### Math Puzzle
 
-#### Camfire Puzzle
+#### Campfire Puzzle
 
 #### Scrambled Numbers Puzzle
 
-#### Word Search Puzzle
+### Word Search Puzzle
+We have a Word Search in which your task is to find a keyword! Each time you play, your wordsearch will load with each time you receive the minipuzzle having a randomized chance of the keyword being one of the following words : {halt, melt, frost, soften, reheat}. 
+
+### Menu & Leaderboard
+Our title page includes a FNAF 2 style menu with chilly elements (i.e icicle) to fit Snowglobe's Freeze theme! In addition, you can access a leaderboard on the menu to see previous players' scores. From here in order to play the game you must type your name (must be 3 letters long) and then you're off! When you lose, you have the option to return to the menu (where you could then go to the leaderboard and see your ranking among other players). 
 
 ### Leaderboard
