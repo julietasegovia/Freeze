@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://7werun5apgnn"]
 
-[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://tablet.tscn" id="1_lspov"]
-[ext_resource type="Texture2D" uid="uid://sbae3ua6608e" path="res://Sprites/left_hand.png" id="2_jd3mu"]
-[ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://left_hand.gd" id="3_rww0o"]
-[ext_resource type="PackedScene" path="res://Script/random_timer.tscn" id="4_timer"]
-[ext_resource type="PackedScene" path="res://Script/timer_display.tscn" id="5_display"]
-
+[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
+[ext_resource type="Texture2D" uid="uid://sbae3ua66o8e" path="res://Freeze/Sprites/left_hand.png" id="2_jd3mu"]
+[ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://Freeze/left_hand.gd" id="3_rww0o"]
+[ext_resource type="PackedScene" path="res://Freeze/Script/random_timer.tscn" id="4_timer"]
+[ext_resource type="PackedScene" path="res://Freeze/Script/timer_display.tscn" id="5_display"]
+[ext_resource type="Script" path="res://Freeze/main.gd" id="6_main"]
 [node name="Main" type="Node2D" unique_id=1716710005]
+script = ExtResource("6_main")
 
 [node name="Tablet" parent="." unique_id=315542649 instance=ExtResource("1_lspov")]
 position = Vector2(556, 801)

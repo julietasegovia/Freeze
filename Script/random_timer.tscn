@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://Script/random_timer.gd" id="1_timer"]
-[ext_resource type="AudioStream" path="res://Script/clockaudio.wav" id="2_tick"]
-[ext_resource type="AudioStream" path="res://Script/blaringalarm.wav" id="3_alarm"]
+[ext_resource type="Script" path="res://Freeze/Script/random_timer.gd" id="1_timer"]
+[ext_resource type="AudioStream" path="res://Freeze/Script/clockaudio.wav" id="2_tick"]
+[ext_resource type="AudioStream" path="res://Freeze/Script/blaringalarm.wav" id="3_alarm"]
+
 
 [node name="RandomTimer" type="Timer"]
 one_shot = true

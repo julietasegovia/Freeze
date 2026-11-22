@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dfu3ba16i03w0"
-path="res://.godot/imported/blaringalarm.wav-42ccb421095914f8058a55f8074b0a8f.sample"
+path="res://.godot/imported/blaringalarm.wav-a02609cd029edfb42afb5ffbe4a5be8b.sample"
 
 [deps]
 
-source_file="res://Script/blaringalarm.wav"
-dest_files=["res://.godot/imported/blaringalarm.wav-42ccb421095914f8058a55f8074b0a8f.sample"]
+source_file="res://Freeze/Script/blaringalarm.wav"
+dest_files=["res://.godot/imported/blaringalarm.wav-a02609cd029edfb42afb5ffbe4a5be8b.sample"]
 
 [params]
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://Script/timer_display.gd" id="1_display"]
+[ext_resource type="Script" path="res://Freeze/Script/timer_display.gd" id="1_display"]
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_clock"]
 font_size = 48

@@ -3,7 +3,8 @@ extends Node
 var last_printed: String = ""
 
 func _ready() -> void:
-	var timer = load("res://random_timer.tscn").instantiate()
+	var timer = load("res://Freeze/Script/random_timer.tscn").instantiate()
+
 	add_child(timer)
 	timer.timeout.connect(_on_timer_done)
 	print("Timer started! Picked random whole time: %d seconds" % timer.wait_time)

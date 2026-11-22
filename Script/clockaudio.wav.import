@@ -3,12 +3,13 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b8wolvh44hbdc"
-path="res://.godot/imported/clockaudio.wav-92ad093a757adf37868795fed018bba0.sample"
+path="res://.godot/imported/clockaudio.wav-21fba781a808d91a3c9278faa2a90c05.sample"
 
 [deps]
 
-source_file="res://Script/clockaudio.wav"
-dest_files=["res://.godot/imported/clockaudio.wav-92ad093a757adf37868795fed018bba0.sample"]
+source_file="res://Freeze/Script/clockaudio.wav"
+dest_files=["res://.godot/imported/clockaudio.wav-21fba781a808d91a3c9278faa2a90c05.sample"]
+
 
 [params]
 
