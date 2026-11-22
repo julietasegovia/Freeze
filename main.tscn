@@ -1,4 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://7werun5apgnn"]
+[gd_scene format=3 uid="uid://bodacmpa8cj5c"]
+
 
 [ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
 [ext_resource type="Texture2D" uid="uid://sbae3ua66o8e" path="res://Freeze/Sprites/left_hand.png" id="2_jd3mu"]
@@ -11,8 +12,7 @@ script = ExtResource("6_main")
 
 [node name="Tablet" parent="." unique_id=315542649 instance=ExtResource("1_lspov")]
 position = Vector2(556, 801)
-up_position = Vector2(556, 320)
-down_position = Vector2(556, 800)
+script = null
 
 [node name="Left_Hand" type="Sprite2D" parent="." unique_id=1746918484]
 position = Vector2(336.42328, 842.6627)
@@ -24,8 +24,8 @@ offset = Vector2(-120, 0)
 flip_h = true
 script = ExtResource("3_rww0o")
 
-[node name="RandomTimer" parent="." instance=ExtResource("4_timer")]
+[node name="RandomTimer" parent="." unique_id=410763742 instance=ExtResource("4_timer")]
 
-[node name="TimerDisplay" parent="." node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
+[node name="TimerDisplay" parent="." unique_id=1508602724 node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
 timer = NodePath("../RandomTimer")
 tablet = NodePath("../Tablet")

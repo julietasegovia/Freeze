@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://7werun5apgnn"]
+
+[ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://tablet.tscn" id="1_lspov"]
+[ext_resource type="Texture2D" uid="uid://sbae3ua6608e" path="res://Sprites/left_hand.png" id="2_jd3mu"]
+[ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://left_hand.gd" id="3_rww0o"]
+[ext_resource type="PackedScene" path="res://Script/random_timer.tscn" id="4_timer"]
+[ext_resource type="PackedScene" path="res://Script/timer_display.tscn" id="5_display"]
+
+[node name="Main" type="Node2D" unique_id=1716710005]
+
+[node name="Tablet" parent="." unique_id=315542649 instance=ExtResource("1_lspov")]
+position = Vector2(556, 801)
+up_position = Vector2(556, 320)
+down_position = Vector2(556, 800)
+
+[node name="Left_Hand" type="Sprite2D" parent="." unique_id=1746918484]
+position = Vector2(336.42328, 842.6627)
+rotation = 0.5508427
+scale = Vector2(1.9732616, 1.9732617)
+texture = ExtResource("2_jd3mu")
+centered = false
+offset = Vector2(-120, 0)
+flip_h = true
+script = ExtResource("3_rww0o")
+
+[node name="RandomTimer" parent="." instance=ExtResource("4_timer")]
+
+[node name="TimerDisplay" parent="." node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
+timer = NodePath("../RandomTimer")
+tablet = NodePath("../Tablet")

@@ -13,6 +13,8 @@ func setup(target_timer: Timer) -> void:
 	
 	if timer.has_signal("second_ticked"):
 		timer.second_ticked.connect(update_display)
+	if timer.has_signal("timer_restarted"):
+		timer.timer_restarted.connect(update_display)
 	timer.timeout.connect(_on_timer_finished)
 
 func _process(_delta: float) -> void:
