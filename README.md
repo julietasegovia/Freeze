@@ -13,7 +13,7 @@ Can you do it? Can you save your town?
 
 ![](readme-imgs/game.png)
 
-**Live Demo**: https://who-li.itch.io/onwatch
+**Live Demo**: https://amritaashok07.itch.io/onwatch
 
 **Made by**: Juli (@julietasegovia) and Amrita (@ashokamrita07-sys)
 
