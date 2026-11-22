@@ -90,7 +90,7 @@ text = "Retry"
 script = ExtResource("10_retry")
 
 [node name="Left_Hand" type="Sprite2D" parent="." unique_id=1746918484]
-z_index = 10
+z_index = 20
 position = Vector2(336.42328, 842.6627)
 rotation = 0.5508427
 scale = Vector2(1.9732616, 1.9732617)
@@ -110,11 +110,12 @@ offset_top = 400.0
 offset_right = 765.0
 offset_bottom = 470.0
 focus_mode = 0
-theme_override_colors/font_color = Color(0.85, 0.92, 0.98, 1)
+theme_override_colors/font_color = Color(0.99995536, 0.49201554, 0.4455427, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_utrw8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_qt1qd")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_h6wrc")
 text = "Menu"
+script = ExtResource("10_retry")
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]
