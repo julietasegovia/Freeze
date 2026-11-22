@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var timer: Timer = $RandomTimer
 @onready var display: Label = $TimerDisplay
+@onready var lose_label: Label = $LoseLabel
+@onready var retry_button: Button = $RetryButton
 @onready var tablet = $Tablet
 @onready var monster_asleep: Sprite2D = $MonsterAsleep
 @onready var monster_awake: Sprite2D = $MonsterAwake
@@ -45,7 +47,14 @@ func _process(_delta: float) -> void:
 
 func _on_player_lost() -> void:
 	timer.call("cancel_restart")
-	display.text = "You lose"
-	display.visible = true
+	display.call("hide_for_loss")
+	display.text = ""
+	display.visible = false
+	display.set_process(false)
+	lose_label.visible = true
+	retry_button.visible = true
 	_show_awake()
 	tablet.call("slide_down")
+
+func _on_retry_pressed() -> void:
+	get_tree().reload_current_scene()
