@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://b8gqvpidquxsu" path="res://Freeze/Sprites/campfire.png" id="7_jr574"]
 [ext_resource type="Texture2D" uid="uid://dj0504g50jh6n" path="res://Freeze/Sprites/fire.png" id="8_2015u"]
 [ext_resource type="Texture2D" uid="uid://cvs4wgrfqn14i" path="res://Freeze/Sprites/bar_sprite.png" id="8_jr574"]
-
 [ext_resource type="PackedScene" path="res://Freeze/Wscript/wordsearch_minigame.tscn" id="9_ws"]
 
 [sub_resource type="GDScript" id="GDScript_jr574"]
@@ -66,11 +65,17 @@ script/source = "extends Node2D
 @onready var fireplace = $Fireplace
 @onready var order: Node2D = $Order
 @onready var wordsearch = $WordsearchMinigame
+@onready var score_label: Label = $Score
 
 var number_buttons: Array[Button] = []
 var correct_answer: int
 var next_number := 1
 var finished := false
+var points := 0
+
+func _add_point() -> void:
+	points += 1
+	score_label.text = \"Score: %d\" % points
 
 func _ready() -> void:
 	for child in order.get_children():
@@ -108,6 +113,7 @@ func _on_answer_pressed(button: Button) -> void:
 	if finished:
 		return
 	if int(button.text) == correct_answer:
+		_add_point()
 		_show_order()
 	else:
 		new_equation()
@@ -140,12 +146,15 @@ func _on_number_pressed(button: Button) -> void:
 	button.disabled = true
 	next_number += 1
 	if next_number > 10:
+		_add_point()
 		_show_fireplace()
 
 func _on_fireplace_solved() -> void:
+	_add_point()
 	_show_wordsearch()
 
 func _on_wordsearch_solved(_word: String) -> void:
+	_add_point()
 	await get_tree().create_timer(0.8).timeout
 	_show_math()
 
@@ -373,17 +382,29 @@ offset_right = 490.0
 offset_bottom = 381.0
 theme_override_font_sizes/font_size = 60
 
+[node name="WordsearchMinigame" parent="Puzzle" unique_id=658679675 instance=ExtResource("9_ws")]
+offset_left = -302.0
+offset_top = -200.0
+offset_right = 158.0
+offset_bottom = 200.0
+
 [node name="PuzzleFrame" type="Sprite2D" parent="Puzzle" unique_id=43849346]
 position = Vector2(-73, 2)
 scale = Vector2(0.65, 0.47641686)
 texture = ExtResource("5_opqta")
 
+[node name="Score" type="Label" parent="Puzzle" unique_id=982710832]
+z_index = 5
+offset_left = -111.0
+offset_top = -287.0
+offset_right = 109.0
+offset_bottom = -242.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Up_Down/Up_Down_Button" to="." method="_on_up_down_pressed"]
 
 [editable path="Up_Down"]
-
-[node name="WordsearchMinigame" parent="Puzzle" instance=ExtResource("9_ws")]
-offset_left = -302.0
-offset_top = -200.0
-offset_right = 158.0
-offset_bottom = 200.0
