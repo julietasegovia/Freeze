@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
 [ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Freeze/Sprites/tablet_background.jpg" id="2_dxfeb"]
 [ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
+[ext_resource type="Script" uid="uid://be03qooe4l4u8" path="res://Freeze/puzzle.gd" id="5_nioi2"]
 [ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Freeze/Sprites/puzzle_frame.png" id="5_opqta"]
+[ext_resource type="Texture2D" uid="uid://c2rck21hoc3td" path="res://Freeze/Sprites/math_background.jpg" id="6_k7306"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
 
@@ -48,6 +50,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k7306")
 position = Vector2(40, 40)
 
 [node name="Puzzle" type="Node2D" parent="." unique_id=486865470]
+script = ExtResource("5_nioi2")
+
+[node name="PuzzleBackground" type="Sprite2D" parent="Puzzle" unique_id=1450641573]
+position = Vector2(-72.44983, -0.87500024)
+scale = Vector2(0.086128525, 0.12783921)
+texture = ExtResource("6_k7306")
 
 [node name="Equation" type="Label" parent="Puzzle" unique_id=1481027411]
 custom_minimum_size = Vector2(400, 60)
@@ -55,30 +63,36 @@ offset_left = -290.0
 offset_top = -183.0
 offset_right = 110.0
 offset_bottom = -123.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
 
-[node name="Answer A" type="Button" parent="Puzzle/Equation" unique_id=1815426833]
+[node name="Answer1" type="Button" parent="Puzzle/Equation" unique_id=1815426833]
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 0
 offset_left = -58.0
 offset_top = 281.0
 offset_right = 112.0
 offset_bottom = 381.0
+theme_override_font_sizes/font_size = 60
 
-[node name="Answer A2" type="Button" parent="Puzzle/Equation" unique_id=262917253]
+[node name="Answer2" type="Button" parent="Puzzle/Equation" unique_id=262917253]
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 0
-offset_left = 134.0
+offset_left = 131.0
 offset_top = 281.0
-offset_right = 304.0
+offset_right = 301.0
 offset_bottom = 381.0
+theme_override_font_sizes/font_size = 60
 
-[node name="Answer A3" type="Button" parent="Puzzle/Equation" unique_id=1190769007]
+[node name="Answer3" type="Button" parent="Puzzle/Equation" unique_id=1190769007]
 custom_minimum_size = Vector2(170, 100)
 layout_mode = 0
 offset_left = 320.0
 offset_top = 281.0
 offset_right = 490.0
 offset_bottom = 381.0
+theme_override_font_sizes/font_size = 60
 
 [node name="PuzzleFrame" type="Sprite2D" parent="Puzzle" unique_id=43849346]
 position = Vector2(-73, 2)
