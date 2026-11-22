@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://random_timer.gd" id="1_timer"]
+[ext_resource type="Script" path="res://Script/random_timer.gd" id="1_timer"]
+[ext_resource type="AudioStream" path="res://Script/clockaudio.wav" id="2_tick"]
 
 [node name="RandomTimer" type="Timer"]
 one_shot = true
 script = ExtResource("1_timer")
+
+[node name="TickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tick")
+
