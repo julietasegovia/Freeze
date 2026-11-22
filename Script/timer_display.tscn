@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Freeze/Script/timer_display.gd" id="1_display"]
 
+
 [sub_resource type="LabelSettings" id="LabelSettings_clock"]
 font_size = 48
 font_color = Color(1, 0.2, 0.2, 1)

@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" path="res://Freeze/Script/clockaudio.wav" id="2_tick"]
 [ext_resource type="AudioStream" path="res://Freeze/Script/blaringalarm.wav" id="3_alarm"]
 
+
 [node name="RandomTimer" type="Timer"]
 one_shot = true
 script = ExtResource("1_timer")

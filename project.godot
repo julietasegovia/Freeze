@@ -1,0 +1,5 @@
+config_version=5
+
+[application]
+config/name="TimerTest"
+run/main_scene="res://test.tscn"

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://7werun5apgnn"]
+[gd_scene load_steps=6 format=3 uid="uid://7werun5apgnn"]
 
 [ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
 [ext_resource type="Texture2D" uid="uid://sbae3ua66o8e" path="res://Freeze/Sprites/left_hand.png" id="2_jd3mu"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" path="res://Freeze/Script/random_timer.tscn" id="4_timer"]
 [ext_resource type="PackedScene" path="res://Freeze/Script/timer_display.tscn" id="5_display"]
 [ext_resource type="Script" path="res://Freeze/main.gd" id="6_main"]
-
 [node name="Main" type="Node2D" unique_id=1716710005]
 script = ExtResource("6_main")
 
