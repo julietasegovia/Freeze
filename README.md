@@ -13,7 +13,7 @@ Can you do it? Can you save your town?
 
 **Live Demo**: https://who-li.itch.io/onwatch
 
-**Made by**: Juli (@julietasegovia) and Armitha (@ashokamrita07-sys)
+**Made by**: Juli (@julietasegovia) and Armita (@ashokamrita07-sys)
 
 ## How it works
 ### Timer & Gameflow
