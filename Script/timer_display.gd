@@ -18,6 +18,9 @@ func setup(target_timer: Timer) -> void:
 	timer.timeout.connect(_on_timer_finished)
 
 func _process(_delta: float) -> void:
+	if text == "You lose":
+		visible = true
+		return
 	if tablet != null and "is_up" in tablet:
 		visible = not tablet.is_up
 
