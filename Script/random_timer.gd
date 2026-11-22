@@ -2,9 +2,11 @@ extends Timer
 
 signal second_ticked(seconds_left: int)
 signal alarm_finished
+signal timer_restarted(new_seconds: int)
 
 @export var min_seconds: int = 10
 @export var max_seconds: int = 30
+@export var freeze_seconds: float = 5.0
 @export var start_on_ready: bool = true
 
 @onready var tick_player: AudioStreamPlayer = $TickPlayer
@@ -25,6 +27,7 @@ func start_random() -> void:
 	start()
 	if tick_player.stream != null:
 		tick_player.play()
+	timer_restarted.emit(int(wait_time))
 
 func _process(_delta: float) -> void:
 	if is_stopped():
@@ -43,6 +46,11 @@ func _on_timer_timeout() -> void:
 	tick_player.stop()
 	if alarm_player.stream != null:
 		alarm_player.play()
+	
+	# Stay frozen at 0 for max 5 seconds, then reset to a new 10-30s countdown
+	await get_tree().create_timer(freeze_seconds).timeout
+	alarm_player.stop()
+	start_random()
 
 func get_time_left_formatted() -> String:
 	return str(int(ceil(time_left)))
