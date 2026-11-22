@@ -1,7 +1,7 @@
 
 [gd_scene format=3 uid="uid://bflp023eusjk1"]
 
-[ext_resource type="Texture2D" uid="uid://dhwyq5d30qekw" path="res://Freeze/Sprites/up_down.png" id="1_mjf3w"]
+[ext_resource type="Texture2D" uid="uid://dhwyq5d30qekw" path="res://Sprites/up_down.png" id="1_mjf3w"]
 
 [node name="Up_Down" type="Node2D" unique_id=1679606921]
 
