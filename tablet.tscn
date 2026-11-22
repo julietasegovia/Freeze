@@ -80,6 +80,8 @@ func _add_point() -> void:
 func _ready() -> void:
 	for child in order.get_children():
 		var button := child as Button
+		if button == null:
+			continue
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(_on_number_pressed.bind(button))
 		number_buttons.append(button)
@@ -253,6 +255,18 @@ text = "CLICK AND HOLD
 "
 
 [node name="Order" type="Node2D" parent="Puzzle" unique_id=1317789156]
+
+[node name="OrderHint" type="Label" parent="Puzzle/Order" unique_id=1661086011]
+offset_left = -369.0
+offset_top = -202.0
+offset_right = 228.0
+offset_bottom = -121.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Click the numbers in order from 1 to 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Number1" type="Button" parent="Puzzle/Order" unique_id=363536745]
 custom_minimum_size = Vector2(70, 80)
