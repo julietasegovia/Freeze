@@ -7,6 +7,7 @@ signal solved
 @onready var hold_button: Button = $HoldButton
 
 const HOLD_TIME := 10.0
+const DRAIN_PER_SECOND := 0.5
 var charge := 0.0
 var done := false
 var fire_start: Vector2
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 	if hold_button.button_pressed:
 		charge = min(charge + delta, HOLD_TIME)
 	else:
-		charge = 0.0
+		charge = max(charge - delta * DRAIN_PER_SECOND, 0.0)
 	var step := mini(int(charge / 2.0), 5)
 	fire.scale = fire_start * (1.0 + step * 0.75)
 	heat_bar.scale = Vector2(bar_full.x, bar_full.y * (charge / HOLD_TIME))
