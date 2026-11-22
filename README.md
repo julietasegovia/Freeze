@@ -49,3 +49,11 @@ We have a Word Search in which your task is to find a keyword! Each time you pla
 
 ### Menu & Leaderboard
 Our title page includes a FNAF 2 style menu with chilly elements (i.e icicle) to fit Snowglobe's Freeze theme! In addition, you can access a leaderboard on the menu to see previous players' scores. From here in order to play the game you must type your name (must be 3 letters long) and then you're off! When you lose, you have the option to return to the menu (where you could then go to the leaderboard and see your ranking among other players). 
+
+## What was hard, and how we fixed it
+
+The most challenging stuff at first was merging our work. We've never worked on a collaborative GODOT repo before and we had many path mismatches and file overwrites on our individual work. We fixed that by being more organized, writing new lines of code without deleting old ones and just communicating more.
+
+## What's next
+
+Definetly more puzzles, the game gets repetitve after a couple of rounds. Improving the graphics would be great as well, with more time we could make our own art for the sprites.
