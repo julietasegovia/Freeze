@@ -1,13 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://7werun5apgnn"]
+[gd_scene format=3 uid="uid://7werun5apgnn"]
 
 [ext_resource type="PackedScene" uid="uid://u28m1swwqk0u" path="res://Freeze/tablet.tscn" id="1_lspov"]
 [ext_resource type="Texture2D" uid="uid://sbae3ua66o8e" path="res://Freeze/Sprites/left_hand.png" id="2_jd3mu"]
+[ext_resource type="Texture2D" uid="uid://cll02tf8fb6kk" path="res://Freeze/Sprites/monster_awake.jpg" id="2_peus7"]
+[ext_resource type="Texture2D" uid="uid://brcc5g8sqlynb" path="res://Freeze/Sprites/moster_asleep.jpeg" id="3_8ut4o"]
 [ext_resource type="Script" uid="uid://ba7v7dr53apyl" path="res://Freeze/left_hand.gd" id="3_rww0o"]
 [ext_resource type="PackedScene" path="res://Freeze/Script/random_timer.tscn" id="4_timer"]
-[ext_resource type="PackedScene" path="res://Freeze/Script/timer_display.tscn" id="5_display"]
-[ext_resource type="Script" path="res://Freeze/main.gd" id="6_main"]
+[ext_resource type="PackedScene" uid="uid://c7fhnl5sk777d" path="res://Freeze/Script/timer_display.tscn" id="5_display"]
+[ext_resource type="Script" uid="uid://cuty65ym46y7p" path="res://Freeze/main.gd" id="6_main"]
+[ext_resource type="Texture2D" uid="uid://bg17h467p0nt1" path="res://Freeze/Sprites/alarm.png" id="8_7s31i"]
+[ext_resource type="Texture2D" uid="uid://bgkbducudlc6d" path="res://Freeze/Sprites/block_da_clock.png" id="9_yarqd"]
+[ext_resource type="Script" uid="uid://b170idcnsvq4y" path="res://Freeze/Script/retry_button.gd" id="10_retry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utrw8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qt1qd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6wrc"]
+
 [node name="Main" type="Node2D" unique_id=1716710005]
 script = ExtResource("6_main")
+
+[node name="MonsterAwake" type="Sprite2D" parent="." unique_id=2054742407]
+position = Vector2(574, 138)
+scale = Vector2(0.28711972, 0.28711972)
+texture = ExtResource("2_peus7")
+
+[node name="MonsterAsleep" type="Sprite2D" parent="." unique_id=1523256316]
+visible = false
+position = Vector2(592.0001, 325.00003)
+scale = Vector2(1.7299461, 1.9894059)
+texture = ExtResource("3_8ut4o")
+
+[node name="RandomTimer" parent="." unique_id=500072832 instance=ExtResource("4_timer")]
+
+[node name="Clock" type="Sprite2D" parent="." unique_id=1546063594]
+position = Vector2(572, 418.00003)
+scale = Vector2(1.2785714, 1.2785715)
+texture = ExtResource("8_7s31i")
+
+[node name="Block Da Clock" type="Sprite2D" parent="." unique_id=2130144496]
+position = Vector2(621, 406)
+scale = Vector2(5.565217, 1.1)
+texture = ExtResource("9_yarqd")
+
+[node name="TimerDisplay" parent="." unique_id=369443998 node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
+visible = false
+offset_left = 353.0
+offset_top = 335.0
+offset_right = 873.0
+offset_bottom = 472.0
+timer = NodePath("../RandomTimer")
+tablet = NodePath("../Tablet")
 
 [node name="Tablet" parent="." unique_id=315542649 instance=ExtResource("1_lspov")]
 position = Vector2(556, 801)
@@ -20,12 +64,39 @@ rotation = 0.5508427
 scale = Vector2(1.9732616, 1.9732617)
 texture = ExtResource("2_jd3mu")
 centered = false
-offset = Vector2(-120, 0)
+offset = Vector2(-115, -20)
 flip_h = true
 script = ExtResource("3_rww0o")
 
-[node name="RandomTimer" parent="." instance=ExtResource("4_timer")]
+[node name="LoseLabel" type="Label" parent="." unique_id=1564659096]
+visible = false
+z_index = 10
+offset_left = 279.0
+offset_top = 303.0
+offset_right = 945.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(0.87038726, 2.8878452e-07, 1.2513996e-06, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 65
+text = "You lose"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TimerDisplay" parent="." node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
-timer = NodePath("../RandomTimer")
-tablet = NodePath("../Tablet")
+[node name="RetryButton" type="Button" parent="." unique_id=158944252]
+visible = false
+z_index = 10
+offset_left = 480.0
+offset_top = 400.0
+offset_right = 746.0
+offset_bottom = 470.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.99995536, 0.49201554, 0.4455427, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_utrw8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qt1qd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h6wrc")
+text = "Retry"
+script = ExtResource("10_retry")
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_pressed"]

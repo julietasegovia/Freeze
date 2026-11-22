@@ -3,6 +3,8 @@ extends Label
 @export var timer: Timer
 @export var tablet: Node2D
 
+var hidden_for_loss := false
+
 func _ready() -> void:
 	if timer != null:
 		setup(timer)
@@ -17,16 +19,18 @@ func setup(target_timer: Timer) -> void:
 		timer.timer_restarted.connect(update_display)
 	timer.timeout.connect(_on_timer_finished)
 
+func hide_for_loss() -> void:
+	hidden_for_loss = true
+	visible = false
+
 func _process(_delta: float) -> void:
-	if text == "You lose":
-		visible = true
+	if hidden_for_loss:
+		visible = false
 		return
 	if tablet != null and "is_up" in tablet:
 		visible = not tablet.is_up
 
 func update_display(seconds_left: int) -> void:
-	if text == "You lose":
-		return
 	text = "00:%02d" % seconds_left
 
 func _on_timer_finished() -> void:
