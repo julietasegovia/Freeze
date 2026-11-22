@@ -24,16 +24,18 @@ The game tracks the cursor input for solving the puzzles, it recieves no other i
 The monster is represented by a background image. That's just a sprite that pops up while the alarm goes off.
 
 ### Puzzles
+A win on any puzzle will take you to the next puzzle
 #### Math Puzzle
+The tablet shows an equation like a + b - c. Three buttons appear: one is the right answer, and the other two are random wrong numbers. A wrong click replaces the equation and answers.
 
 #### Campfire Puzzle
+The digits 1 through 10 are shuffled on ten buttons. You click them in order, starting at 1. A wrong number turns every button back on and you start again at 1.
 
 #### Scrambled Numbers Puzzle
+Hold the button for 10 seconds. The flame grows and the heat bar fills while you hold. Letting go drains the bar slowly. 
 
-### Word Search Puzzle
+#### Word Search Puzzle
 We have a Word Search in which your task is to find a keyword! Each time you play, your wordsearch will load with each time you receive the minipuzzle having a randomized chance of the keyword being one of the following words : {halt, melt, frost, soften, reheat}. 
 
 ### Menu & Leaderboard
 Our title page includes a FNAF 2 style menu with chilly elements (i.e icicle) to fit Snowglobe's Freeze theme! In addition, you can access a leaderboard on the menu to see previous players' scores. From here in order to play the game you must type your name (must be 3 letters long) and then you're off! When you lose, you have the option to return to the menu (where you could then go to the leaderboard and see your ranking among other players). 
-
-### Leaderboard
