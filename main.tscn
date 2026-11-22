@@ -40,16 +40,16 @@ scale = Vector2(1.2785714, 1.2785715)
 texture = ExtResource("8_7s31i")
 
 [node name="Block Da Clock" type="Sprite2D" parent="." unique_id=2130144496]
-position = Vector2(621, 406)
-scale = Vector2(5.565217, 1.1)
+position = Vector2(573, 406)
+scale = Vector2(7.6521735, 1.1)
 texture = ExtResource("9_yarqd")
 
 [node name="TimerDisplay" parent="." unique_id=369443998 node_paths=PackedStringArray("timer", "tablet") instance=ExtResource("5_display")]
 visible = false
-offset_left = 353.0
-offset_top = 335.0
-offset_right = 873.0
-offset_bottom = 472.0
+offset_left = 315.0
+offset_top = 337.0
+offset_right = 835.0
+offset_bottom = 474.0
 timer = NodePath("../RandomTimer")
 tablet = NodePath("../Tablet")
 
@@ -100,8 +100,6 @@ offset = Vector2(-115, -20)
 flip_h = true
 script = ExtResource("3_rww0o")
 
-[connection signal="pressed" from="RetryButton" to="." method="_on_retry_pressed"]
-
 [node name="MenuButton" type="Button" parent="." unique_id=158944253]
 visible = false
 z_index = 10
@@ -118,4 +116,5 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_h6wrc")
 text = "Menu"
 script = ExtResource("10_retry")
 
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]
