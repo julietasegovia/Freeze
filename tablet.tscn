@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0enriykrncxq" path="res://Freeze/Sprites/tablet.png" id="1_wfsd1"]
 [ext_resource type="Texture2D" uid="uid://bly7l7o6iphsq" path="res://Freeze/Sprites/tablet_background.jpg" id="2_dxfeb"]
 [ext_resource type="PackedScene" uid="uid://bflp023eusjk1" path="res://Freeze/up_down_button.tscn" id="2_pb78e"]
+[ext_resource type="Texture2D" uid="uid://cg1neqg07bajo" path="res://Freeze/Sprites/puzzle_frame.png" id="5_opqta"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5a8w"]
 
@@ -45,6 +46,44 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k7306")
 
 [node name="Up_Down_Sprite" parent="Up_Down/Up_Down_Button" index="0" unique_id=851099214]
 position = Vector2(40, 40)
+
+[node name="Puzzle" type="Node2D" parent="." unique_id=486865470]
+
+[node name="Equation" type="Label" parent="Puzzle" unique_id=1481027411]
+custom_minimum_size = Vector2(400, 60)
+offset_left = -290.0
+offset_top = -183.0
+offset_right = 110.0
+offset_bottom = -123.0
+
+[node name="Answer A" type="Button" parent="Puzzle/Equation" unique_id=1815426833]
+custom_minimum_size = Vector2(170, 100)
+layout_mode = 0
+offset_left = -58.0
+offset_top = 281.0
+offset_right = 112.0
+offset_bottom = 381.0
+
+[node name="Answer A2" type="Button" parent="Puzzle/Equation" unique_id=262917253]
+custom_minimum_size = Vector2(170, 100)
+layout_mode = 0
+offset_left = 134.0
+offset_top = 281.0
+offset_right = 304.0
+offset_bottom = 381.0
+
+[node name="Answer A3" type="Button" parent="Puzzle/Equation" unique_id=1190769007]
+custom_minimum_size = Vector2(170, 100)
+layout_mode = 0
+offset_left = 320.0
+offset_top = 281.0
+offset_right = 490.0
+offset_bottom = 381.0
+
+[node name="PuzzleFrame" type="Sprite2D" parent="Puzzle" unique_id=43849346]
+position = Vector2(-73, 2)
+scale = Vector2(0.65, 0.47641686)
+texture = ExtResource("5_opqta")
 
 [connection signal="pressed" from="Up_Down/Up_Down_Button" to="." method="_on_up_down_pressed"]
 
