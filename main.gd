@@ -10,10 +10,16 @@ const MOVE_LIMIT := 6.0
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
+	timer.connect("timer_restarted", _on_timer_restarted)
 
 func _on_timer_timeout() -> void:
 	armed = true
 	frozen_mouse = get_global_mouse_position()
+
+func _on_timer_restarted(_new_seconds: int) -> void:
+	if lost:
+		return
+	armed = false
 
 func _process(_delta: float) -> void:
 	if lost or not armed:
@@ -21,6 +27,7 @@ func _process(_delta: float) -> void:
 	if get_global_mouse_position().distance_to(frozen_mouse) <= MOVE_LIMIT:
 		return
 	lost = true
+	timer.call("cancel_restart")
 	display.text = "You lose"
 	display.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
